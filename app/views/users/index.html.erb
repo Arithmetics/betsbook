@@ -1,0 +1,13 @@
+<h1>All Users</h1>
+<ul>
+<% @users.each do |user| %>
+  <% if user != current_user %>
+  <li> <%= link_to user.username, user %>
+       <% if current_user.is_friends?(user) %>
+         You are friends! :)
+       <% else %>
+         <%= link_to "Send Request", current_user %> </li>
+       <% end %>
+  <% end %>
+<% end %>
+</ul>

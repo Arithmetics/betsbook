@@ -73,6 +73,8 @@ GEM
       warden (~> 1.2.3)
     erubi (1.7.0)
     execjs (2.7.0)
+    faker (1.7.3)
+      i18n (~> 0.5)
     ffi (1.9.18)
     formatador (0.2.5)
     globalid (0.4.1)
@@ -228,6 +230,7 @@ DEPENDENCIES
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
   devise
+  faker
   guard (= 2.13.0)
   guard-minitest (= 2.4.4)
   jbuilder (~> 2.5)

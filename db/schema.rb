@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171123175150) do
+ActiveRecord::Schema.define(version: 20171127190015) do
+
+  create_table "friend_requests", force: :cascade do |t|
+    t.boolean "accepted"
+    t.integer "requestor_id"
+    t.integer "requestee_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["requestee_id"], name: "index_friend_requests_on_requestee_id"
+    t.index ["requestor_id"], name: "index_friend_requests_on_requestor_id"
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string "title"

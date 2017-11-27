@@ -1,8 +1,43 @@
-<h1> Welcome to your page <%= @user.username %> </h1>
+<% if current_user == @user%>
+
+  <h1> Welcome to your page <%= @user.username %> </h1>
+
+  <h2> Here are your posts: </h2>
+  <%= render @posts %>
+
+  <h2> Here are your friends </h2>
+  <ul>
+    <% @user.friends.each do |friend| %>
+    <li> <%= link_to friend.username, friend %>,
+         <%= link_to "Delete Friend",
+             friend_request_path(current_user.find_associated_friend_request(friend)[0].id),
+             method: :delete,
+             data: {confirm: "Are you sure?"} %>
+    <% end %>
+  </ul>
+
+  <h2> Here are your pending friend requests: </h2>
+    <% @user.pending_requests.each do |request| %>
+      <ul>
+        <li> <%= link_to request.requestor.username, request.requestor %> </li>
+
+        <li> <%= link_to "See full request details", request %> </li>
+        <li> <%= link_to "Accept", friend_request_path(request), method: :patch %> </li>
+        <li> <%= link_to "Decline", friend_request_path(request), method: :delete %> </li>
+        <li> decline request </li>
+      </ul>
+    <% end %>
 
 
-<h2> Here are your posts: </h2>
+<% elsif current_user.is_friends?(@user) %>
 
-  <% @posts.each do |post| %>
-    <%= render @posts %>
-  <% end %>
+  <h1> Welcome to <%= @user.username %>'s Page </h1>
+  <h2> Here are <%= @user.username %>'s posts: </h2>
+  <%= render @posts %>
+
+<% else %>
+
+ <h1> You are not friends with <%= @user.username %> </h1>
+ <p> Their posts are private </p>
+
+<% end %>
