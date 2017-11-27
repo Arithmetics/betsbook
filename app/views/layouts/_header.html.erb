@@ -1,4 +1,6 @@
+<h4> Current User: <%= current_user.email %> </h4>
 <h4>NAV:</h4>
 <ul>
   <li> <%= link_to "Profile", current_user %> </li>
+  <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %> </li>
 </ul>

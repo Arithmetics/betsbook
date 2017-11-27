@@ -4,8 +4,5 @@
 <h2> Here are your posts: </h2>
 
   <% @posts.each do |post| %>
-    <ul>
-      <li> <%= post.title %> </li>
-      <li> <%= post.body %> </li>
-    </ul>
+    <%= render @posts %>
   <% end %>
