@@ -1,0 +1,11 @@
+<h1> Welcome to your page <%= @user.username %> </h1>
+
+
+<h2> Here are your posts: </h2>
+
+  <% @posts.each do |post| %>
+    <ul>
+      <li> <%= post.title %> </li>
+      <li> <%= post.body %> </li>
+    </ul>
+  <% end %>

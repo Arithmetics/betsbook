@@ -2,7 +2,7 @@ class StaticPagesController < ApplicationController
 
   def home
     if user_signed_in?
-      redirect_to posts_path
+      redirect_to current_user
     else
       redirect_to new_user_session_path
     end
