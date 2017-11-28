@@ -2,7 +2,7 @@
 <ul>
 <% @users.each do |user| %>
   <% if user != current_user %>
-  <li> <%= link_to user.username, user %>
+  <li> <%= link_to user.username, user %><%= user.email %>
        <% if current_user.is_friends?(user) %>
          You are friends! :)
        <% elsif current_user.friend_requested?(user) %>

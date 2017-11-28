@@ -2,10 +2,18 @@
 
   <h1> Welcome to your page <%= @user.username %> </h1>
 
+  <h2>Create a new Post: </h2>
+
+  <%= simple_form_for @post do |f|%>
+    <%= f.input :title %>
+    <%= f.input :body %>
+    <%= f.button :submit %>
+  <% end %>
+
   <h2> Here are your posts: </h2>
   <%= render @posts %>
 
-  <h2> Here are your friends </h2>
+  <h2> Here are your friends: </h2>
   <ul>
     <% @user.friends.each do |friend| %>
     <li> <%= link_to friend.username, friend %>,

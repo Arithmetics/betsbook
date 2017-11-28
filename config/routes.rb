@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   root 'static_pages#home'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :posts
-  resources :users
+  resources :users do
+    resources :friend_requests, only: [:index]
+  end
+
   resources :friend_requests, only: [:create, :destroy, :update, :show]
 
 end

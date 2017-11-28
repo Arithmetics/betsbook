@@ -16,3 +16,25 @@
     password_confirmation: "password"
   )
 end
+
+
+User.all.each do |user|
+  20.times do
+    user.posts.create(
+      title: Faker::Pokemon.move,
+      body:  Faker::RickAndMorty.quote
+    )
+  end
+end
+
+
+User.all.each do |user|
+  x = User.all
+  10.times do
+    user.sent_friend_requests.create(requestee: x.sample,
+                                      accepted: true)
+    user.sent_friend_requests.create(requestee: x.sample,
+                                      accepted: false)
+
+  end
+end

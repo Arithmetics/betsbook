@@ -5,6 +5,10 @@ class FriendRequestsController < ApplicationController
     @friend_request = FriendRequest.find(params[:id])
   end
 
+  def index
+    @user = User.find(params[:user_id])
+  end
+
 
   def create
     @friend_request = FriendRequest.new(friend_request_params)

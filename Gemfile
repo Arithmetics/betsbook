@@ -30,7 +30,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'devise'
-gem 'faker'
+gem 'faker', '~> 1.8.4'
 gem 'simple_form'
 
 

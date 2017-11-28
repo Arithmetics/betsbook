@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = @user.posts.all
     @friend_request = FriendRequest.new
-
+    @post = Post.new 
   end
 
   def index
