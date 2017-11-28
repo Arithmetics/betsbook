@@ -5,8 +5,15 @@
   <li> <%= link_to user.username, user %>
        <% if current_user.is_friends?(user) %>
          You are friends! :)
+       <% elsif current_user.friend_requested?(user) %>
+         Friend request pending
        <% else %>
-         <%= link_to "Send Request", current_user %> </li>
+
+       <%= simple_form_for @friend_request do |f| %>
+         <%= f.input :requestee_id, :as => :hidden, :input_html => { :value => user.id } %>
+         <%= f.button :submit %>
+       <% end %>
+
        <% end %>
   <% end %>
 <% end %>

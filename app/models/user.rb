@@ -18,12 +18,22 @@ class User < ApplicationRecord
     x + y
   end
 
+  def pending_friends
+    x = self.sent_friend_requests.all.where(accepted:false).map{ |x| x.requestee }
+    y = self.recieved_friend_requests.all.where(accepted:false).map{ |x| x.requestor }
+    x + y
+  end
+
   def pending_requests
     self.recieved_friend_requests.where(accepted:false)
   end
 
   def is_friends?(user)
     self.friends.any? { |e| e == user  }
+  end
+
+  def friend_requested?(user)
+    self.pending_friends.any? { |e| e == user  }
   end
 
   def all_friend_requests

@@ -7,7 +7,15 @@ class FriendRequestsController < ApplicationController
 
 
   def create
-
+    @friend_request = FriendRequest.new(friend_request_params)
+    @friend_request.update_attribute(:accepted, false)
+    @friend_request.update_attribute(:requestor_id, current_user.id)
+    if @friend_request.save
+      flash[:notice] = "Friend Request Sent"
+      redirect_to current_user
+    else
+      flash[:notice] = "There was an error when creating the friend request"
+    end
   end
 
 
@@ -33,7 +41,8 @@ class FriendRequestsController < ApplicationController
 
   private ####################################################
 
-  def friend_requests_params
+  def friend_request_params
+    params.require(:friend_request).permit(:approved, :requestor_id, :requestee_id)
   end
 
 end

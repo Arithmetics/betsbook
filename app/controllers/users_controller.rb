@@ -4,9 +4,12 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.all
+    @friend_request = FriendRequest.new
+
   end
 
   def index
+    @friend_request = FriendRequest.new
     @users = User.all
   end
 

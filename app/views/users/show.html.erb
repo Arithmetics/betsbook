@@ -18,13 +18,11 @@
 
   <h2> Here are your pending friend requests: </h2>
     <% @user.pending_requests.each do |request| %>
+    <%= link_to request.requestor.username, request.requestor %>
       <ul>
-        <li> <%= link_to request.requestor.username, request.requestor %> </li>
-
         <li> <%= link_to "See full request details", request %> </li>
         <li> <%= link_to "Accept", friend_request_path(request), method: :patch %> </li>
         <li> <%= link_to "Decline", friend_request_path(request), method: :delete %> </li>
-        <li> decline request </li>
       </ul>
     <% end %>
 
@@ -38,6 +36,12 @@
 <% else %>
 
  <h1> You are not friends with <%= @user.username %> </h1>
+
+   <%= simple_form_for @friend_request do |f| %>
+     <%= f.input :requestee_id, :as => :hidden, :input_html => { :value => @user.id } %>
+     <%= f.button :submit %>
+   <% end %>
+
  <p> Their posts are private </p>
 
 <% end %>
