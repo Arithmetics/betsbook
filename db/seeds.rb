@@ -6,6 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+User.create(username: "BrockT",
+            email: "brock.m.tillotson@gmail.com",
+            password: "rock7900",
+            password_confirmation: "rock7900")
 
 100.times do
   x = Faker::Pokemon.name

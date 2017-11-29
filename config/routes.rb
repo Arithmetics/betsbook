@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   end
 
   resources :friend_requests, only: [:create, :destroy, :update, :show]
-
+  resources :likes, only: [:create, :destroy]
+  
 end

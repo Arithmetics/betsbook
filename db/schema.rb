@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171127190015) do
+ActiveRecord::Schema.define(version: 20171128210642) do
 
   create_table "friend_requests", force: :cascade do |t|
     t.boolean "accepted"
@@ -20,6 +20,15 @@ ActiveRecord::Schema.define(version: 20171127190015) do
     t.datetime "updated_at", null: false
     t.index ["requestee_id"], name: "index_friend_requests_on_requestee_id"
     t.index ["requestor_id"], name: "index_friend_requests_on_requestor_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_likes_on_post_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|

@@ -1,3 +1,5 @@
+<% @posts_feed.each do |post| %>
+
 <div class = "post">
   <p>User: <%= post.user.username %> </p>
   <p>Title: <%= post.title %> </p>
@@ -22,3 +24,5 @@
     <%= link_to user.username, user %>
   <% end %>
 </div>
+
+<% end %>

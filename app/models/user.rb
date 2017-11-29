@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :posts
+  has_many :likes
+  has_many :liked_posts, through: :likes, source: :post
 
   has_many :sent_friend_requests, foreign_key: "requestor_id", class_name: "FriendRequest"
   has_many :recieved_friend_requests, foreign_key: "requestee_id", class_name: "FriendRequest"
@@ -48,6 +50,12 @@ class User < ApplicationRecord
       x = self.sent_friend_requests.all.where(requestee: friend)
     end
     x
+  end
+
+  def posts_feed
+    friends_ids = self.friends.map{|x| x.id}
+    friends_ids.push(self.id).join(',')
+    Post.where(user_id: friends_ids)
   end
 
 end

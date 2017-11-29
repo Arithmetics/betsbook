@@ -1,5 +1,6 @@
 class FriendRequestsController < ApplicationController
   before_action :authenticate_user!
+  before_action :correct_user, only: [:update, :destroy]
 
   def show
     @friend_request = FriendRequest.find(params[:id])
@@ -24,7 +25,6 @@ class FriendRequestsController < ApplicationController
 
 
   def update
-    @friend_request = FriendRequest.find(params[:id])
     if @friend_request.accept
       flash[:notice] = "New Friendship Created!"
       redirect_to @friend_request.requestor
@@ -36,7 +36,6 @@ class FriendRequestsController < ApplicationController
 
 
   def destroy
-    @friend_request = FriendRequest.find(params[:id])
     @friend_request.destroy
     flash[:notice] = "Friendship DESTROYED!"
     redirect_to current_user
@@ -47,6 +46,11 @@ class FriendRequestsController < ApplicationController
 
   def friend_request_params
     params.require(:friend_request).permit(:approved, :requestor_id, :requestee_id)
+  end
+
+  def correct_user
+    @friend_request = current_user.recieved_friend_requests.find(params[:id])
+    redirect_to root_url if @friend_request.nil?
   end
 
 end

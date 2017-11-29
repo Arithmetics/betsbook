@@ -10,10 +10,17 @@
     <%= f.button :submit %>
   <% end %>
 
+<div class="inline">
   <h2> Here are your posts: </h2>
   <%= render @posts %>
+</div>
 
-  <h2> Here are your friends: </h2>
+<div class="inline">
+  <h2> Here is your feed: </h2>
+  <%= render 'posts_feed' %>
+</div>
+
+  <h2> Here are your friends(<%= @user.friends.count %>): </h2>
   <ul>
     <% @user.friends.each do |friend| %>
     <li> <%= link_to friend.username, friend %>,
@@ -24,7 +31,7 @@
     <% end %>
   </ul>
 
-  <h2> Here are your pending friend requests: </h2>
+  <h2> Here are your pending friend requests(<%= @user.pending_requests.count %>): </h2>
     <% @user.pending_requests.each do |request| %>
     <%= link_to request.requestor.username, request.requestor %>
       <ul>
