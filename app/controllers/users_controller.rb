@@ -3,8 +3,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.order('created_at DESC').all
-    @posts_feed = @user.posts_feed.order('created_at DESC').all
+    @posts = @user.posts.order('created_at DESC').take(10)
+    @posts_feed = @user.posts_feed.order('created_at DESC').take(10)
     @friend_request = FriendRequest.new
     @post = Post.new
     @like = Like.new
