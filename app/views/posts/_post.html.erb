@@ -9,7 +9,7 @@
   <% if post.liked_by?(current_user) %>
     <%= link_to "Unlike", [post.users_like(current_user)], method: :delete %>
   <% else %>
-    <%= simple_form_for(@like, remote: true) do |f| %>
+    <%= simple_form_for(@like) do |f| %>
       <%= f.input :post_id, :as => :hidden, :input_html => { :value => post.id } %>
       <%= f.button :submit %>
     <% end %>
@@ -23,7 +23,7 @@
   <% end %>
 
   <p> Add a comment: </p>
-  <%= simple_form_for(@comment, remote: true) do |f| %>
+  <%= simple_form_for(@comment) do |f| %>
     <%= f.input :post_id, :as => :hidden, :input_html => { :value => post.id } %>
     <%= f.input :content %>
     <%= f.button :submit %>

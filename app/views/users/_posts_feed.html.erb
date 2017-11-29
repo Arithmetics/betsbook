@@ -25,7 +25,7 @@
   <% end %>
 
   <p> Add a comment: </p>
-  <%= simple_form_for(@comment, remote: true) do |f| %>
+  <%= simple_form_for(@comment) do |f| %>
     <%= f.input :post_id, :as => :hidden, :input_html => { :value => post.id } %>
     <%= f.input :content %>
     <%= f.button :submit %>

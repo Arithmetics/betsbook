@@ -14,6 +14,7 @@ class LikesController < ApplicationController
     end
   end
 
+
   def destroy
     @user = @like.post.user
     @like.destroy
