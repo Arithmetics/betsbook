@@ -3,13 +3,13 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_many :posts
-  has_many :comments
-  has_many :likes
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
   has_many :liked_posts, through: :likes, source: :post
 
-  has_many :sent_friend_requests, foreign_key: "requestor_id", class_name: "FriendRequest"
-  has_many :recieved_friend_requests, foreign_key: "requestee_id", class_name: "FriendRequest"
+  has_many :sent_friend_requests, foreign_key: "requestor_id", class_name: "FriendRequest", dependent: :destroy
+  has_many :recieved_friend_requests, foreign_key: "requestee_id", class_name: "FriendRequest", dependent: :destroy
 
   has_many :initiated_friendships, through: :sent_friend_requests, source: :requestee
   has_many :proposed_friendships, through: :recieved_friend_requests, source: :requestor
