@@ -15,7 +15,7 @@ class Post < ApplicationRecord
 
   def users_like(user)
     if self.liked_by?(user)
-      self.likes.find_by("user_id", user.id)
+      self.likes.find_by("user_id": user.id)
     end
   end
 
