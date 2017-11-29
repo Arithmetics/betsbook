@@ -21,4 +21,21 @@
   <% post.liking_users.each do |user| %>
     <%= link_to user.username, user %>
   <% end %>
+
+  <p> Add a comment: </p>
+  <%= simple_form_for(@comment, remote: true) do |f| %>
+    <%= f.input :post_id, :as => :hidden, :input_html => { :value => post.id } %>
+    <%= f.input :content %>
+    <%= f.button :submit %>
+  <% end %>
+
+  <p>Comments:</p>
+  <% post.comments.each do |comment| %>
+    <div class="comment">
+      <p><%= comment.user.username %></p>
+      <p><%= comment.content %></p>
+      <%= link_to "Delete comment", [comment], method: :delete %>
+    </div>
+  <% end %>
+
 </div>

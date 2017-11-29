@@ -2,6 +2,7 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :likes
   has_many :liking_users, through: :likes, source: :user
+  has_many :comments
 
 
   def liked_by?(user)
@@ -16,6 +17,6 @@ class Post < ApplicationRecord
     if self.liked_by?(user)
       self.likes.find_by("user_id", user.id)
     end
-  end 
+  end
 
 end

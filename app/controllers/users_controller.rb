@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     @friend_request = FriendRequest.new
     @post = Post.new
     @like = Like.new
+    @comment = Comment.new
   end
 
   def index

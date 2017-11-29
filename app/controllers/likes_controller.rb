@@ -5,7 +5,7 @@ class LikesController < ApplicationController
 
 
   def create
-    @like = current_user.likes.build(post_params)
+    @like = current_user.likes.build(like_params)
     if @like.save
       flash[:notice] = "you liked #{@like.post.user.username}'s post"
       redirect_to @like.post.user
@@ -23,7 +23,7 @@ class LikesController < ApplicationController
 
   private ###################
 
-    def post_params
+    def like_params
       params.require(:like).permit(:post_id)
     end
 
