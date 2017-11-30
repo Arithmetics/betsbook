@@ -8,7 +8,10 @@
     <%= f.input :title %>
     <%= f.input :body %>
     <%= f.button :submit %>
+    <%= f.input :picture, :as => :file, accept: 'image/jpeg,image/gif,image/png' %>
   <% end %>
+
+
 
 <div class="inline">
   <h2> Here are your posts: </h2>

@@ -12,8 +12,8 @@ class PostsController < ApplicationController
       flash[:notice] = "Post created"
       redirect_to current_user
     else
-      flash.now[:notice] = "Could not save post"
-      render current_user
+      flash[:notice] = "Picture too large"
+      redirect_to current_user
     end
   end
 
@@ -27,7 +27,7 @@ class PostsController < ApplicationController
 
 
   def post_params
-    params.require(:post).permit(:title, :body, :user_id)
+    params.require(:post).permit(:title, :body, :user_id, :picture)
   end
 
   def correct_user

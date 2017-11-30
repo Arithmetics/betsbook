@@ -2,6 +2,7 @@
   <p>User: <%= post.user.username %> </p>
   <p>Title: <%= post.title %> </p>
   <p>Content: <%= post.body %> </p>
+  <%= image_tag post.picture.url if post.picture? %>
   <% if post.user == current_user %>
     <%= link_to "Delete Post", post, method: :delete, data: {confirm: "Are you sure?"} %>
   <% end %>
