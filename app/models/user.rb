@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+  mount_uploader :avatar, AvatarUploader
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
@@ -14,6 +15,13 @@ class User < ApplicationRecord
   has_many :initiated_friendships, through: :sent_friend_requests, source: :requestee
   has_many :proposed_friendships, through: :recieved_friend_requests, source: :requestor
 
+
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+  after_update :crop_avatar
+
+  def crop_avatar
+    avatar.recreate_versions! if crop_x.present?
+  end
 
   def friends
     x = self.sent_friend_requests.all.where(accepted:true).map{ |x| x.requestee }

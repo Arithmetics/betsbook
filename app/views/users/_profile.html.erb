@@ -1,0 +1,6 @@
+
+<% if @user.avatar? %>
+  <%= image_tag(@user.avatar.thumb.url, class: "profile-pic") %>
+<% else %>
+  <%= image_tag("default_avatar.jpg", class: "profile-pic") %>
+<% end %>

@@ -2,6 +2,7 @@
 <h4>NAV:</h4>
 <ul>
   <li> <%= link_to "Profile", current_user %> </li>
+  <li> <%=  link_to "Edit Profile", edit_user_registration_path %> </li>
   <li> <%= link_to "Pending Friend Requests(#{current_user.pending_requests.count})", [current_user, :friend_requests] %> </li>
   <li> <%= link_to "All Users", users_path %> </li>
   <li><%= link_to('Logout', destroy_user_session_path, method: :delete) %> </li>

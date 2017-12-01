@@ -1,6 +1,8 @@
-<% if current_user == @user%>
+<% if current_user == @user %>
 
   <h1> Welcome to your page <%= @user.username %> </h1>
+
+  <%= render 'profile' %>
 
   <h2>Create a new Post: </h2>
 
@@ -47,6 +49,8 @@
 
 <% elsif current_user.is_friends?(@user) %>
 
+<%= render 'profile' %>
+
   <h1> Welcome to <%= @user.username %>'s Page </h1>
   <h2> Here are <%= @user.username %>'s posts: </h2>
   <%= render @posts %>
@@ -54,6 +58,8 @@
 <% else %>
 
  <h1> You are not friends with <%= @user.username %> </h1>
+
+  <%= render 'profile' %>
 
    <%= simple_form_for @friend_request do |f| %>
      <%= f.input :requestee_id, :as => :hidden, :input_html => { :value => @user.id } %>
