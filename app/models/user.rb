@@ -15,9 +15,15 @@ class User < ApplicationRecord
   has_many :initiated_friendships, through: :sent_friend_requests, source: :requestee
   has_many :proposed_friendships, through: :recieved_friend_requests, source: :requestor
 
-
+  #think i can take this out
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+
+  after_create :welcome_send
   after_update :crop_avatar
+
+  def welcome_send
+    WelcomeMailer.welcome_send(self).deliver
+  end
 
   def crop_avatar
     avatar.recreate_versions! if crop_x.present?
