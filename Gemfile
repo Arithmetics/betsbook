@@ -36,6 +36,8 @@ gem 'carrierwave', '1.1.0'
 gem 'mini_magick'
 gem 'fog'
 gem 'jquery-rails'
+gem 'omniauth-twitter'
+gem 'figaro'
 
 
 group :development, :test do
