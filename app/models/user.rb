@@ -1,17 +1,17 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  # :confirmable, :lockable, :timeoutable
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
+
   mount_uploader :avatar, AvatarUploader
+
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :liked_posts, through: :likes, source: :post
-
   has_many :sent_friend_requests, foreign_key: "requestor_id", class_name: "FriendRequest", dependent: :destroy
   has_many :recieved_friend_requests, foreign_key: "requestee_id", class_name: "FriendRequest", dependent: :destroy
-
   has_many :initiated_friendships, through: :sent_friend_requests, source: :requestee
   has_many :proposed_friendships, through: :recieved_friend_requests, source: :requestor
 
@@ -21,7 +21,7 @@ class User < ApplicationRecord
   after_create :welcome_send
   after_update :crop_avatar
 
-
+#twitter omni methods
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
@@ -53,15 +53,18 @@ class User < ApplicationRecord
   end
  end
 
-
+#email methods
   def welcome_send
     WelcomeMailer.welcome_send(self).deliver
   end
 
+#jcrop avatar methods
   def crop_avatar
     avatar.recreate_versions! if crop_x.present?
   end
 
+
+#friends methods
   def friends
     x = self.sent_friend_requests.all.where(accepted:true).map{ |x| x.requestee }
     y = self.recieved_friend_requests.all.where(accepted:true).map{ |x| x.requestor }
@@ -100,6 +103,7 @@ class User < ApplicationRecord
     x
   end
 
+#posts feed methods
   def posts_feed
     friends_ids = self.friends.map{|x| x.id}
     friends_ids.push(self.id).join(',')
