@@ -1,4 +1,4 @@
-class PostsController < ApplicationControllercurrent_user
+class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :correct_user, only: :destroy
 
