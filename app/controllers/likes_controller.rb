@@ -8,7 +8,7 @@ class LikesController < ApplicationController
     @like = current_user.likes.build(like_params)
     if @like.save
       flash[:notice] = "you liked #{@like.post.user.username}'s post"
-      redirect_to @like.post.user
+      redirect_to request.referrer
     else
       flash.now[:notice] = "you didnt end up liking the post"
     end

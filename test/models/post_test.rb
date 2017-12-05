@@ -7,6 +7,7 @@ class PostTest < ActiveSupport::TestCase
 
   def setup
     @user = users(:brock)
+    @user2 = users(:archer)
     @post = @user.posts.build(title: "yo yo", body: "whoa whoa")
   end
 
@@ -30,9 +31,9 @@ class PostTest < ActiveSupport::TestCase
   end
 
   test "when user is deleted their posts should go as well" do
-    @post.save
+    @user2.posts.create!(title: "blah", body: "bloop")
     assert_difference 'Post.count', -1 do
-      @user.destroy
+      @user2.destroy!
     end
   end
 

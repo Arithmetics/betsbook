@@ -4,6 +4,6 @@
 <% 40.times do |n| %>
 post_<%= n %>:
   title: <%= Faker::Pokemon.move %>
-  body: <%= Faker::RickAndMorty.quote %>
+  body: <%= Faker::Pokemon.location %>
   user: brock
 <% end %>

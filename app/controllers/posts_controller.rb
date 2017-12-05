@@ -1,4 +1,4 @@
-class PostsController < ApplicationController
+class PostsController < ApplicationControllercurrent_user
   before_action :authenticate_user!
   before_action :correct_user, only: :destroy
 
@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
     if @post.save
       flash[:notice] = "Post created"
-      redirect_to current_user
+      redirect_to request.referrer
     else
       flash[:notice] = "Picture too large"
       redirect_to current_user

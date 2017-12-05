@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.build(comment_params)
     if @comment.save
       flash[:notice] = "you comment was added on #{@comment.post.user.username}'s post"
-      redirect_to @comment.post.user
+      redirect_to request.referrer
     else
       flash.now[:notice] = "you didnt end up commenting on the post"
     end

@@ -17,7 +17,7 @@ class FriendRequestsController < ApplicationController
     @friend_request.update_attribute(:requestor_id, current_user.id)
     if @friend_request.save
       flash[:notice] = "Friend Request Sent"
-      redirect_to current_user
+      redirect_to request.referrer
     else
       flash[:notice] = "There was an error when creating the friend request"
     end
