@@ -1,1 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+
+friend_request_1:
+  accepted: false
+  requestor: brock
+  requestee: dax
+
+friend_request_2:
+  accepted: true
+  requestor: archer
+  requestee: brock 

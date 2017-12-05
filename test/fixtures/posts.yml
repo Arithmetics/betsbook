@@ -7,3 +7,24 @@ post_<%= n %>:
   body: <%= Faker::Pokemon.location %>
   user: brock
 <% end %>
+
+
+other_post_1:
+  title: <%= Faker::Pokemon.move %>
+  body: <%= Faker::Pokemon.location %>
+  user: lana
+
+other_post_2:
+  title: <%= Faker::Pokemon.move %>
+  body: <%= Faker::Pokemon.location %>
+  user: bob
+
+other_post_3:
+  title: <%= Faker::Pokemon.move %>
+  body: <%= Faker::Pokemon.location %>
+  user: bob
+
+other_post_4:
+    title: <%= Faker::Pokemon.move %>
+    body: <%= Faker::Pokemon.location %>
+    user: dax

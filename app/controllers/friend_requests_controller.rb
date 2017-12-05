@@ -12,9 +12,8 @@ class FriendRequestsController < ApplicationController
 
 
   def create
-    @friend_request = FriendRequest.new(friend_request_params)
+    @friend_request = current_user.sent_friend_requests.build(friend_request_params)
     @friend_request.update_attribute(:accepted, false)
-    @friend_request.update_attribute(:requestor_id, current_user.id)
     if @friend_request.save
       flash[:notice] = "Friend Request Sent"
       redirect_to request.referrer
@@ -38,7 +37,7 @@ class FriendRequestsController < ApplicationController
   def destroy
     @friend_request.destroy
     flash[:notice] = "Friendship DESTROYED!"
-    redirect_to current_user
+    redirect_to request.referrer
   end
 
 

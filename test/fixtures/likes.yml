@@ -1,1 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+
+like_1:
+  post: other_post_1
+  user: brock
+
+like_2:
+  post: other_post_2
+  user: brock
+
+like_3:
+  post: post_1
+  user: dax 

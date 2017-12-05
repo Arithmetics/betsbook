@@ -8,9 +8,6 @@ class UserLoginTest < ActionDispatch::IntegrationTest
     @user = users(:brock)
   end
 
-  test "user" do
-
-  end
 
   test "redirected to login on root call, not logged in" do
     get root_path
@@ -27,6 +24,9 @@ class UserLoginTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", destroy_user_session_path
     assert_select "a[href=?]", user_path(@user)
     assert_select 'h1', text: "Welcome to your page #{@user.username}"
+    @user.posts.take(10).each do |post|
+      assert_match post.body, response.body
+    end
   end
 
 
