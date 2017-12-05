@@ -1,1 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+
+<% 40.times do |n| %>
+post_<%= n %>:
+  title: <%= Faker::Pokemon.move %>
+  body: <%= Faker::RickAndMorty.quote %>
+  user: brock
+<% end %>

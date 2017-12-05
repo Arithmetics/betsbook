@@ -7,7 +7,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   # end
 
   def setup
-    @user = "ds"
+    @user = users(:brock)
   end
 
   test "show get new" do

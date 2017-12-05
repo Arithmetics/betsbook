@@ -1,16 +1,18 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
+  include Devise::Test::IntegrationHelpers
   # test "the truth" do
   #   assert true
   # end
 
   def setup
-    @user = User.new(username: "Reg User", email: "reguser1@example.com")
+    @user = users(:brock)
   end
 
-  test "user should be valid" do
+  test "user valid" do
     assert @user.valid?
   end
+
 
 end
